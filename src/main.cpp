@@ -4,19 +4,18 @@
 
 #define BASE_X_SERVO_ANGLE_ADDR (0x00)
 #define BASE_X_SERVO_PULSE_ADDR (0x10)
-#define BASE_X_PWM_DUTY_ADDR    (0x20)
-#define BASE_X_ENCODER_ADDR     (0x30)
-#define BASE_X_SPEED_ADDR       (0x40)
+#define BASE_X_PWM_DUTY_ADDR (0x20)
+#define BASE_X_ENCODER_ADDR (0x30)
+#define BASE_X_SPEED_ADDR (0x40)
 
-#define BASE_X_CONFIG_ADDR      (0x50)
+#define BASE_X_CONFIG_ADDR (0x50)
 
-#define NORMAL_MODE     (0x00)
-#define POSITION_MODE   (0x01)
-#define SPEED_MODE      (0x02)
+#define NORMAL_MODE (0x00)
+#define POSITION_MODE (0x01)
+#define SPEED_MODE (0x02)
 
 // the setup routine runs once when M5Stack starts up
-void setup(){
-
+void setup() {
     // Initialize the M5Stack object
     // M5.begin();
     M5.begin(true, false, true, true);
@@ -26,7 +25,7 @@ void setup(){
 
     // set mode
     int8_t mode = NORMAL_MODE;
-    uint8_t pos = 0; // motor 1
+    uint8_t pos = 0;  // motor 1
     M5.I2C.writeByte(BASE_X_ADDR, BASE_X_CONFIG_ADDR + (0x10 * pos), mode);
 }
 
@@ -34,7 +33,7 @@ void setup(){
 void loop() {
     M5.update();
 
-    uint8_t pos = 0; // motor 1
+    uint8_t pos = 0;  // motor 1
 
     // set motor speed
     uint8_t addr = BASE_X_PWM_DUTY_ADDR + pos;
