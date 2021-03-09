@@ -1,19 +1,22 @@
+#include <BaseX.h>
 #include <M5Stack.h>
 #include <PS4Controller.h>
 
-#define BASE_X_ADDR (0x22)
+/* #define BASE_X_ADDR (0x22) */
 
-#define BASE_X_SERVO_ANGLE_ADDR (0x00)
-#define BASE_X_SERVO_PULSE_ADDR (0x10)
-#define BASE_X_PWM_DUTY_ADDR (0x20)
-#define BASE_X_ENCODER_ADDR (0x30)
-#define BASE_X_SPEED_ADDR (0x40)
+/* #define BASE_X_SERVO_ANGLE_ADDR (0x00) */
+/* #define BASE_X_SERVO_PULSE_ADDR (0x10) */
+/* #define BASE_X_PWM_DUTY_ADDR (0x20) */
+/* #define BASE_X_ENCODER_ADDR (0x30) */
+/* #define BASE_X_SPEED_ADDR (0x40) */
 
-#define BASE_X_CONFIG_ADDR (0x50)
+/* #define BASE_X_CONFIG_ADDR (0x50) */
 
-#define NORMAL_MODE (0x00)
-#define POSITION_MODE (0x01)
-#define SPEED_MODE (0x02)
+/* #define NORMAL_MODE (0x00) */
+/* #define POSITION_MODE (0x01) */
+/* #define SPEED_MODE (0x02) */
+
+BASE_X base_x = BASE_X();
 
 // the setup routine runs once when M5Stack starts up
 void setup() {
@@ -28,11 +31,14 @@ void setup() {
     M5.Lcd.print("Hello world! motor");
 
     // set mode
+    base_x.SetMode(1, NORMAL_MODE);
     /* int8_t mode = NORMAL_MODE; */
     /* uint8_t pos = 0;  // motor 1 */
     /* M5.I2C.writeByte(BASE_X_ADDR, BASE_X_CONFIG_ADDR + (0x10 * pos), mode);
      */
     /* Serial.begin(115200); */
+
+    // detect mac address
     /* uint8_t bt_mac[6]; */
     /* esp_read_mac(bt_mac, ESP_MAC_BT); */
     /* Serial.printf("Bluetooth Mac Address =>
@@ -48,11 +54,13 @@ void loop() {
     /* uint8_t pos = 0;  // motor 1 */
 
     /* // set motor speed */
+    // base_x.SetMotorSpeed(1, 10);
     /* uint8_t addr = BASE_X_PWM_DUTY_ADDR + pos; */
     /* uint8_t duty = 10; */
     /* M5.I2C.writeByte(BASE_X_ADDR, addr, duty); */
 
     /* // get motor speed */
+    Serial.println(base_x.GetMotorSpeed(1));
     /* uint8_t read_data; */
     /* M5.I2C.readByte(BASE_X_ADDR, addr, &read_data); */
     /* M5.Lcd.print(read_data); */
