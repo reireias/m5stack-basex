@@ -22,7 +22,7 @@ void setup() {
     M5.begin(true, false, true, true);
     M5.Power.begin();
     Serial.begin(115200);
-    PS4.begin("24:0A:C4:5A:2E:5E");
+    PS4.begin((char *)"24:0A:C4:5A:2E:5E");
 
     // LCD display
     M5.Lcd.print("Hello world! motor");
